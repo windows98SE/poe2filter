@@ -10,59 +10,6 @@ Show
   Continue
 
 ################################################################################
-# - Hide item by AreaLevel
-#
-Hide
-  AreaLevel >= 80
-  ItemLevel < 15
-  BaseType "Uncut Skill Gem" "Uncut Spirit Gem"
-
-# ---
-# - Scroll of Wisdom
-Hide
-  AreaLevel >= 45
-  Class "Charms" "Flasks"
-  Rarity <= Magic
-
-# ---
-# - Scroll of Wisdom
-Hide
-  AreaLevel >= 45
-  Class == "Stackable Currency"
-  BaseType == "Scroll of Wisdom"
-
-# ---
-# - Hide Gold < 50
-Hide
-  AreaLevel >= 85
-  Class == "Stackable Currency"
-  BaseType == "Gold"
-  StackSize < 500
-
-# ---
-# - Rune
-Hide
-  AreaLevel >= 80
-  BaseType " Rune" # Safety Catch-all
-
-# ---
-# - Hide Waystone Tier < 10
-Hide
-  AreaLevel >= 80
-  BaseType "Waystone"
-  WaystoneTier < 10
-
-# ---
-# - Hide <= Rare Equipment, Sockets < 1, ItemLevel < 82
-Hide
-  AreaLevel >= 45
-  Class == "Body Armours" "Boots" "Gloves" "Helmets" "Bows" "Crossbows" "Foci" "One Hand Maces" "Quivers" "Quarterstaves" "Sceptres" "Shields" "Staves" "Two Hand Maces" "Wands"
-  Rarity <= Rare
-  ItemLevel < 82
-  Sockets < 1
-  Continue
-
-################################################################################
 # - Highlights Items by type
 #
 # ---
@@ -90,17 +37,32 @@ Show
 # Gold
 Show
   Class == "Stackable Currency"
+  StackSize > 100
   BaseType == "Gold"
-  SetTextColor 255 255 0 # yellow
+  MinimapIcon 2 Yellow Cross
   Continue
 
 Show
   Class == "Stackable Currency"
   BaseType == "Gold"
-  StackSize >= 50
+  StackSize >= 500
   SetBackgroundColor 0 0 0 # black
   PlayEffect Yellow Temp
-  MinimapIcon 2 Yellow Cross
+  MinimapIcon 1 Yellow Cross
+
+# - Hide Gold < 50
+Hide
+  AreaLevel >= 45
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  StackSize < 100
+
+# ------------------------------------------------------------------------------
+# - Scroll of Wisdom
+Hide
+  AreaLevel >= 45
+  Class == "Stackable Currency"
+  BaseType == "Scroll of Wisdom"
 
 # ------------------------------------------------------------------------------
 # Salvagable Items (socket slot > 0)
@@ -183,11 +145,33 @@ Show
   MinimapIcon 0 Red Raindrop
   CustomAlertSound "sound/level_up.mp3" 100
 
+Hide
+  BaseType "Uncut Skill Gem" "Uncut Spirit Gem"
+  ItemLevel < 18
+  AreaLevel >= 80
+
 ################################################################################
-# - Belt, Charms
+# - Charms
 # ---
 Show
-  Class "Belts" "Charms"
+  Class "Charms"
+  SetFontSize 35
+  SetTextColor 147 112 219 # medium purple
+  SetBackgroundColor 0 0 0 # black
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+  Continue
+
+# - Hide Charms
+Hide
+  Class "Charms"
+  Rarity <= Magic
+  AreaLevel >= 45
+
+################################################################################
+# - Belt
+# ---
+Show
+  Class "Belts"
   SetFontSize 35
   SetTextColor 147 112 219 # medium purple
   SetBackgroundColor 0 0 0 # black
@@ -229,6 +213,12 @@ Show
   SetBackgroundColor 0 0 0 # black
   MinimapIcon 1 Red Kite
   CustomAlertSound "sound/item_drop/medium.mp3" 200
+
+# - Hide Flasks
+Hide
+  Class "Flasks"
+  Rarity <= Magic
+  AreaLevel >= 45
 
 ################################################################################
 # - Accessories
@@ -668,12 +658,17 @@ Show
 Show
   BaseType " Rune" # Safety Catch-all
   SetFontSize 35
-  SetTextColor 173 255 47 # green yellow
-  SetBorderColor 173 255 47 # green yellow
+  SetTextColor 135 206 235 # sky blue
+  SetBorderColor 135 206 235  # sky blue
   SetBackgroundColor 0 0 0 # black
   PlayEffect Blue Temp
   MinimapIcon 2 Blue Circle
   CustomAlertSound "sound/cash_machine.mp3" 200
+
+# - Rune
+Hide
+  BaseType " Rune" # Safety Catch-all
+  AreaLevel >= 80
 
 # ------------------------------------------------------------------------------
 # - Omen : Tier C
@@ -743,6 +738,7 @@ Show
   CustomAlertSound "sound/item_drop/small.mp3" 200
   Continue
 
+# - Highlights Waystone Tier 15
 Show
   BaseType "Waystone"
   WaystoneTier 15
@@ -751,6 +747,12 @@ Show
   PlayEffect White
   MinimapIcon 1 White Square
   CustomAlertSound "sound/item_drop/medium.mp3" 200
+
+# - Hide Waystone Tier < 10
+Hide
+  AreaLevel >= 75
+  BaseType "Waystone"
+  WaystoneTier < 10
 
 ################################################################################
 # - Pinnacle Keys, Tablet
@@ -799,3 +801,22 @@ Show
   PlayEffect Yellow
   MinimapIcon 1 Yellow Kite
   CustomAlertSound "sound/item_drop/large.mp3" 200
+
+################################################################################
+# - Hide item by AreaLevel
+#
+# ---
+# - Hide <= Rare Equipment, Sockets < 1, ItemLevel < 82
+Hide
+  AreaLevel >= 45
+  Class == "Body Armours" "Boots" "Gloves" "Helmets" "Bows" "Crossbows" "Foci" "One Hand Maces" "Quivers" "Quarterstaves" "Sceptres" "Shields" "Staves" "Two Hand Maces" "Wands"
+  Rarity <= Rare
+  ItemLevel < 82
+  Sockets < 1
+
+# ---
+# - Hide Normal Equipment, Sockets < 1, ItemLevel < 82
+Hide
+  Class == "Body Armours" "Boots" "Gloves" "Helmets" "Bows" "Crossbows" "Foci" "One Hand Maces" "Quivers" "Quarterstaves" "Sceptres" "Shields" "Staves" "Two Hand Maces" "Wands"
+  Rarity Normal
+  Sockets < 1
