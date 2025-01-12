@@ -1,0 +1,801 @@
+################################################################################
+# - Start Golbal Variable (for 3440x1440)
+#   
+################################################################################
+#   Overrides font size, bg color to all items
+# ---
+Show
+  SetFontSize 30
+  SetBackgroundColor 0 0 0 125  # clear background
+  Continue
+
+################################################################################
+# - Hide item by AreaLevel
+#
+Hide
+  AreaLevel >= 80
+  ItemLevel < 15
+  BaseType "Uncut Skill Gem" "Uncut Spirit Gem"
+
+# ---
+# - Scroll of Wisdom
+Hide
+  AreaLevel >= 45
+  Class "Charms" "Flasks"
+  Rarity <= Magic
+
+# ---
+# - Scroll of Wisdom
+Hide
+  AreaLevel >= 45
+  Class == "Stackable Currency"
+  BaseType == "Scroll of Wisdom"
+
+# ---
+# - Hide Gold < 50
+Hide
+  AreaLevel >= 85
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  StackSize < 500
+
+# ---
+# - Rune
+Hide
+  AreaLevel >= 80
+  BaseType " Rune" # Safety Catch-all
+
+# ---
+# - Hide Waystone Tier < 10
+Hide
+  AreaLevel >= 80
+  BaseType "Waystone"
+  WaystoneTier < 10
+
+# ---
+# - Hide <= Rare Equipment, Sockets < 1, ItemLevel < 82
+Hide
+  AreaLevel >= 45
+  Class == "Body Armours" "Boots" "Gloves" "Helmets" "Bows" "Crossbows" "Foci" "One Hand Maces" "Quivers" "Quarterstaves" "Sceptres" "Shields" "Staves" "Two Hand Maces" "Wands"
+  Rarity <= Rare
+  ItemLevel < 82
+  Sockets < 1
+  Continue
+
+################################################################################
+# - Highlights Items by type
+#
+# ---
+# Normal Items
+Show
+  Rarity Normal
+  SetTextColor 220 220 220 # gainsboro
+  Continue
+
+# ---
+# Magic Items
+Show
+  Rarity Magic
+  SetTextColor 65 105 225 # royal blue
+  Continue
+
+# ---
+# Rare Items
+Show
+  Rarity Rare
+  SetTextColor 255 215 0 # yellow
+  Continue
+
+# ------------------------------------------------------------------------------
+# Gold
+Show
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  SetTextColor 255 255 0 # yellow
+  Continue
+
+Show
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  StackSize >= 50
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow Cross
+
+# ------------------------------------------------------------------------------
+# Salvagable Items (socket slot > 0)
+Show
+  Sockets > 0
+  SetBackgroundColor 0 0 0 # black
+  MinimapIcon 2 Blue Kite
+  Continue
+
+# ------------------------------------------------------------------------------
+# Item Level >= 82
+Show
+  ItemLevel >= 82
+  SetBorderColor 0 128 0 # green
+  SetBackgroundColor 0 0 0 # black
+  MinimapIcon 2 Blue Kite
+  Continue
+
+################################################################################
+# - Overrides font size, font color to Unique Items
+# ---
+Show
+  Rarity Unique
+  SetFontSize 35
+  SetTextColor 210 105 30 # chocolate
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Brown Temp
+  MinimapIcon 2 Brown Kite
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+  Continue
+
+# ---
+# Expensive Unique Items
+Show
+  Rarity Unique
+  BaseType "Armoured Cap" "Diamond" "Emerald" "Furtive Wraps" "Incense Relic" "Omen Crest Shield" "Ornate Belt" "Ring" "Ruby" "Sapphire" "Smuggler Coat" "Tower Shield" "Time-Lost Diamond" "Timeless Jewel" "Ultimate Life Flask" "Ultimate Mana Flask" "Utility Belt" "Vase Relic"
+  SetFontSize 45
+  SetBorderColor 210 105 30 # chocolate
+  SetBackgroundColor 255 255 255 # White
+  PlayEffect Red
+  MinimapIcon 0 Red Star
+  CustomAlertSound "sound/hey.mp3" 300
+
+################################################################################
+# Support, Spirit, Skill Gem
+# ---
+Show
+  BaseType "Uncut Support Gem" "Uncut Skill Gem" "Uncut Spirit Gem"
+  SetFontSize 35
+  SetTextColor 0 128 0 # green
+  SetBackgroundColor 0 0 0 # black
+  MinimapIcon 2 Green Raindrop
+  Continue
+
+# Support Gem: just alway drop.
+Show
+  BaseType "Uncut Support Gem"
+  SetBackgroundColor 255 255 255 # White
+  PlayEffect Green Temp
+  MinimapIcon 2 Green Raindrop
+
+Show
+  BaseType "Uncut Skill Gem" "Uncut Spirit Gem"
+  ItemLevel >= 18
+  SetFontSize 40
+  SetBorderColor 0 128 0 # green
+  SetBackgroundColor 255 255 255 # White
+  PlayEffect Green Temp
+  MinimapIcon 1 Green Raindrop
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+  Continue
+
+Show
+  BaseType "Uncut Skill Gem" "Uncut Spirit Gem"
+  ItemLevel = "20"
+  SetFontSize 45
+  PlayEffect Red
+  SetBorderColor 0 128 0 # green
+  SetBackgroundColor 255 255 255 # White
+  MinimapIcon 0 Red Raindrop
+  CustomAlertSound "sound/level_up.mp3" 100
+
+################################################################################
+# - Belt, Charms
+# ---
+Show
+  Class "Belts" "Charms"
+  SetFontSize 35
+  SetTextColor 147 112 219 # medium purple
+  SetBackgroundColor 0 0 0 # black
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+  Continue
+
+# ---
+# Chancing bases
+Show
+  Class "Belts"
+  BaseType == "Heavy Belt"
+  Rarity Normal
+  SetFontSize 40
+  SetBackgroundColor 255 250 250 # White
+  PlayEffect Blue
+  MinimapIcon 0 Blue Kite
+  CustomAlertSound "sound/cash_machine.mp3" 300
+
+# ---
+# Expensive belts
+Show
+  Class "Belts"
+  BaseType == "Golden Obi"
+  SetFontSize 45
+  SetBorderColor 147 112 219 # medium purple
+  SetBackgroundColor 255 250 250 # White
+  PlayEffect Red
+  MinimapIcon 0 Red Kite
+  CustomAlertSound "sound/hey.mp3" 300
+
+################################################################################
+# - Flasks
+# ---
+Show
+  Class "Flasks"
+  Rarity Rare
+  SetFontSize 35
+  SetTextColor 153 50 204 # dark orchid
+  SetBackgroundColor 0 0 0 # black
+  MinimapIcon 1 Red Kite
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+
+################################################################################
+# - Accessories
+#   Amulets, Rings, Jewels
+# ---
+Show
+  Class "Amulets" "Rings" "Jewels"
+  SetFontSize 35
+  SetTextColor 147 112 219 # dark violet
+  SetBackgroundColor 0 0 0 # black
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+  Continue
+
+# ---
+# Chancing bases
+Show
+  Class "Amulets" "Rings"
+  BaseType "Stellar Amulet" "Sapphire Ring" "Breach Ring"
+  Rarity Normal
+  SetFontSize 40
+  SetBorderColor 147 112 219 # dark violet
+  SetBackgroundColor 255 250 250 # White
+  PlayEffect Blue
+  MinimapIcon 0 Blue Kite
+  CustomAlertSound "sound/cash_machine.mp3" 300
+
+################################################################################
+# - Regular Currency [price 10/01/2025]
+################################################################################
+
+
+# ----------------------------------------
+# - Overrides font size, bg color,
+#   to all currency for catch unknown item (Tier D style)
+# 
+Show
+  Class == "Stackable Currency"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+  Continue
+
+# ----------------------------------------
+# - Mirror, Divine
+# ----------------------------------------
+# ??????????              ?:Divine Orb
+# ----------------------------------------
+# Mirror of Kalandra      1:500   # Tier S+
+# Divine Orb              1:1     # Tier A+
+# ----------------------------------------
+Show
+  Class == "Stackable Currency"
+  BaseType == "Mirror of Kalandra" "Divine Orb"
+  SetFontSize 45
+  SetTextColor 255 0 0 # red
+  SetBorderColor 255 0 0 # red
+  SetBackgroundColor 255 255 255 # White
+  PlayEffect Red
+  MinimapIcon 0 Red Star
+  Continue
+
+Show
+  Class == "Stackable Currency"
+  BaseType == "Mirror of Kalandra"
+  CustomAlertSound "sound/orb/mirror.mp3" 300
+
+Show
+  Class == "Stackable Currency"
+  BaseType == "Divine Orb"
+  CustomAlertSound "sound/orb/divine.mp3" 300
+
+# ----------------------------------------
+# - Orb Currency
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Orb of Chance           1:7.12  # Tier B
+# Orb of Annulment        1:6.5   # Tier B
+# Chaos Orb               1:2.9   # Tier B
+#
+# Orb of Alchemy          2.6:1   # Tier C
+# Artificer's Orb         5:1     # Tier C
+# Vaal Orb                6.12:1  # Tier C
+# Regal Orb               7.5:1   # Tier C
+#
+# Orb of Transmutation    80:1    # Tier D
+# Orb of Augmentation     250:1   # Tier D
+# ----------------------------------------
+# 
+# - Tier B: Orb of ... Annulment, Chance, Chaos
+Show
+  Class == "Stackable Currency"
+  BaseType == "Orb of Chance" "Orb of Annulment" "Chaos Orb"
+  SetFontSize 40
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 255 160 122 # light salmon
+  PlayEffect Yellow
+  MinimapIcon 1 Yellow Circle
+  CustomAlertSound "sound/cash_machine.mp3" 300
+  Continue
+
+Show
+  Class == "Stackable Currency"
+  BaseType "Chaos Orb"
+  CustomAlertSound "sound/orb/chaos.mp3" 200
+
+# ---
+# - Tier C: Orb of ... Alchemy, Vaal, Exalted
+Show
+  Class == "Stackable Currency"
+  BaseType == "Orb of Alchemy" "Artificer's Orb" "Vaal Orb" "Regal Orb" "Exalted Orb"
+  SetFontSize 35
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 218 165 32 # golden rod
+  PlayEffect White
+  MinimapIcon 2 White Circle
+  CustomAlertSound "sound/cash_machine.mp3" 300
+  Continue
+
+Show
+  Class == "Stackable Currency"
+  BaseType "Vaal Orb"
+  CustomAlertSound "sound/orb/vaal.mp3" 300
+
+Show
+  Class == "Stackable Currency"
+  BaseType "Regal Orb"
+  CustomAlertSound "sound/orb/regal.mp3" 300
+
+Show
+  Class == "Stackable Currency"
+  BaseType "Orb of Alchemy"
+  CustomAlertSound "sound/orb/alchemy.mp3" 300
+
+# ---
+# - Tier D: Orb of ... Transmutation, Augmentation
+Show
+  Class == "Stackable Currency"
+  BaseType == "Orb of Transmutation" "Orb of Augmentation"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+
+# ----------------------------------------
+# - Jeweller's Currency
+#
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Perfect Jeweller's Orb  1:300   # Tier A+
+# Greater Jeweller's Orb  1:27    # Tier A
+#
+# Lesser Jeweller's Orb   48:1    # Tier D
+# ----------------------------------------
+#
+# - Tier A+, A : Perfect, Greater ... Jeweller's Orb
+Show
+  Class == "Stackable Currency"
+  BaseType == "Perfect Jeweller's Orb" "Greater Jeweller's Orb"
+  SetFontSize 45
+  SetTextColor 255 0 0 200 # red
+  SetBorderColor 255 0 0 200 # red
+  SetBackgroundColor 255 255 255 200 # White
+  PlayEffect Red
+  MinimapIcon 0 Red Star
+  CustomAlertSound "sound/hey.mp3" 300
+
+Show
+  Class == "Stackable Currency"
+  BaseType == "Greater Jeweller's Orb"
+  SetFontSize 45
+  SetTextColor 255 255 255 # white
+  SetBorderColor 255 255 255 # white
+  SetBackgroundColor 255 160 122 # light salmon
+  PlayEffect Red
+  MinimapIcon 0 Red Circle
+  CustomAlertSound "sound/hey.mp3" 300
+
+# ---
+# - Tier D
+Show
+  Class == "Stackable Currency"
+  BaseType == "Lesser Jeweller's Orb"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+
+# ----------------------------------------
+# - Shards Currency
+#
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Chance Shard            1.14:1  # Tier D
+# Transmutation Shard     14:1    # Tier D
+# Regal Shard             9:1     # Tier D
+# Artificer's Shard       9:1     # Tier D
+# ----------------------------------------
+Show
+  Class == "Stackable Currency"
+  BaseType == "Chance Shard" "Transmutation Shard" "Regal Shard" "Artificer's Shard"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+
+# ----------------------------------------
+# - Quality Currency
+# 
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Armourer's Scrap        2:1     # Tier D
+# Blacksmith's Whetstone  4:1     # Tier D
+# Arcanist's Etcher       5:1     # Tier D
+# Glassblower's Bauble    1.18:1  # Tier D
+# Gemcutter's Prism       1:1.43  # Tier D
+# ----------------------------------------
+Show
+  Class == "Stackable Currency"
+  BaseType == "Armourer's Scrap" "Blacksmith's Whetstone" "Arcanist's Etcher"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+
+Show
+  Class == "Stackable Currency"
+  BaseType == "Gemcutter's Prism" "Gemcutter's Prism"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+
+# ----------------------------------------
+# - Delirium Currency
+#
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Simulacrum              1:270     # Tier A+
+# Distilled Isolation     1:338     # Tier A+
+# Distilled Suffering     1:108     # Tier A+
+#
+# Distilled Fear          1:38      # Tier B
+# Distilled Paranoia      1:14.9    # Tier B
+# Distilled Despair       1:13.48   # Tier B
+#
+# Distilled Disgust       1:4.4     # Tier C
+# Distilled Envy          1:1.85    # Tier C
+# Distilled Greed         1:1.5     # Tier C
+#
+# Simulacrum Splinter     1.13:1    # Tier D
+# Distilled Guilt         1.2:1     # Tier D
+# ----------------------------------------
+
+# ---
+# - Tier A+, A
+Show
+  Class == "Stackable Currency"
+  BaseType == "Simulacrum" "Distilled Isolation" "Distilled Suffering"
+  SetFontSize 45
+  SetTextColor 255 255 255
+  SetBorderColor 255 255 255
+  SetBackgroundColor 250 110 90
+  PlayEffect Red
+  MinimapIcon 0 Red Circle
+  CustomAlertSound "sound/hey.mp3" 300
+
+Show
+  Class == "Stackable Currency"
+  BaseType == "Simulacrum Splinter"
+  SetFontSize 45
+  SetTextColor 0 0 0
+  SetBorderColor 0 0 0
+  SetBackgroundColor 227 155 44
+  PlayEffect White
+  MinimapIcon 1 White Circle
+  CustomAlertSound "sound/cash_machine.mp3" 200
+
+# ---
+# - Tier B, C, D
+Show
+  Class == "Stackable Currency"
+  BaseType "Distilled" # Safety Catch-all
+  SetFontSize 40
+  SetTextColor 0 0 0
+  SetBorderColor 0 0 0
+  SetBackgroundColor 227 155 44
+  PlayEffect White
+  MinimapIcon 2 White Circle
+  CustomAlertSound "sound/cash_machine.mp3" 200
+
+# ----------------------------------------
+# - Breach Currency
+#
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Breachstone             1:72    # Tier A
+#
+# Breach Splinter         4.02:1  # Tier D
+#
+# Esh's Catalyst          4.2:1   # Tier D
+# Neural Catalyst         7:1     # Tier D
+# Reaver Catalyst         6:1     # Tier D
+# Chayula's Catalyst      7:1     # Tier D
+# Tul's Catalyst          5.45:1  # Tier D
+# Xoph's Catalyst         19:1    # Tier D
+#
+# Adaptive Catalyst       1.8:1   # Tier D
+# Flesh Catalyst          36:1    # Tier D
+# Skittering Catalyst     12:1    # Tier D
+# Sibilant Catalyst       18:1    # Tier D
+# Uul-Netol's Catalyst    14:1    # Tier D
+# Carapace Catalyst       31:1    # Tier D
+# ----------------------------------------
+
+# ---
+# - Tier A
+Show
+  Class == "Stackable Currency"
+  BaseType == "Breachstone"
+  SetFontSize 45
+  SetTextColor 255 255 255 # white
+  SetBorderColor 255 255 255 # white
+  SetBackgroundColor 255 160 122 # light salmon
+  PlayEffect Red
+  MinimapIcon 0 Red Circle
+  CustomAlertSound "sound/hey.mp3" 300
+
+# ---
+# - Tier D
+Show
+  AreaLevel >= 75
+  Class == "Stackable Currency"
+  BaseType "Breach Splinter" "Catalyst" # Safety Catch-all
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 173 255 47 # green yellow
+  # PlayEffect White
+  # MinimapIcon 2 White Circle
+  # CustomAlertSound "sound/cash_machine.mp3" 200
+
+# ------------------------------------------------------------------------------
+# - Expedition Currency
+#
+# ----------------------------------------
+# ??????????              ?:exalted orb
+# ----------------------------------------
+# Broken Circle Artifact  6.69:1    # Tier D
+# Black Scythe Artifact   7.1:1     # Tier D
+# Order Artifact          22.2:1    # Tier D
+# Sun Artifact            7:1       # Tier D
+#
+# Exotic Coinage          1:1.8     # Tier C
+# ---
+Show
+  Class == "Stackable Currency"
+  BaseType == "Exotic Coinage"
+  SetFontSize 35
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 218 165 32 # golden rod
+  PlayEffect White
+  MinimapIcon 2 White Circle
+  CustomAlertSound "sound/cash_machine.mp3" 100
+
+Show
+  Class == "Stackable Currency"
+  BaseType " Artifact"
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Yellow Temp
+  MinimapIcon 2 Yellow UpsideDownHouse
+  CustomAlertSound "sound/item_drop/medium.mp3" 100
+
+# ------------------------------------------------------------------------------
+# - Essences Currency
+#     Greater Essence of = Tier B
+#     Essence of = Tier D, C
+# ---
+# - Tier D
+Show
+  Class == "Stackable Currency"
+  BaseType "Essence" # Safety Catch-all
+  SetFontSize 35
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 218 165 32 # golden rod
+  PlayEffect White
+  MinimapIcon 2 White Circle
+  CustomAlertSound "sound/item_drop/small.mp3" 200
+  Continue
+
+# ---
+# - Tier C
+Show
+  Class == "Stackable Currency"
+  BaseType "Greater Essence of" # Safety Catch-all
+  SetFontSize 40
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 255 160 122 # light salmon
+  PlayEffect Yellow
+  MinimapIcon 1 Yellow Circle
+  CustomAlertSound "sound/cash_machine.mp3" 300
+
+# ------------------------------------------------------------------------------
+# - Rune Currency : Tier D
+# ---
+Show
+  BaseType " Rune" # Safety Catch-all
+  SetFontSize 35
+  SetTextColor 173 255 47 # green yellow
+  SetBorderColor 173 255 47 # green yellow
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Blue Temp
+  MinimapIcon 2 Blue Circle
+  CustomAlertSound "sound/cash_machine.mp3" 200
+
+# ------------------------------------------------------------------------------
+# - Omen : Tier C
+# ---
+Show
+  Class == "Omen" # Safety Catch-all
+  SetFontSize 35
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 218 165 32 # golden rod
+  PlayEffect White
+  MinimapIcon 2 White Circle
+  CustomAlertSound "sound/cash_machine.mp3" 100
+
+# ------------------------------------------------------------------------------
+# - Soul Core Currency : Tier C
+# ---
+Show
+  Class == "Socketable"
+  BaseType "Soul Core" # Safety Catch-all
+  SetFontSize 35
+  SetTextColor 0 0 0 # black
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 218 165 32 # golden rod
+  PlayEffect White
+  MinimapIcon 2 White Circle
+  CustomAlertSound "sound/cash_machine.mp3" 100
+
+################################################################################
+# - Sanctum
+#
+#   Relics
+# ---
+Show
+  Class == "Relics"
+  SetFontSize 40
+  SetTextColor 0 240 190
+  SetBorderColor 0 240 190
+  PlayEffect Cyan
+  MinimapIcon 1 Cyan Diamond
+  CustomAlertSound "sound/item_drop/small.mp3" 200
+
+# -----
+# Gold Key, Silver Key, Bronze Key
+Show
+  Class == "Stackable Currency"
+  BaseType == "Gold Key" "Silver Key" "Bronze Key"
+  SetFontSize 45
+  SetTextColor 216 191 216 # thistle
+  SetBorderColor 216 191 216 # thistle
+  SetBackgroundColor 75 0 130 # indigo (purple)
+  PlayEffect Purple
+  MinimapIcon 1 Purple Square
+  CustomAlertSound "sound/item_drop/small.mp3" 200
+
+################################################################################
+# Waystones
+# ---
+Show
+  BaseType "Waystone"
+  Rarity >= Magic
+  SetFontSize 35
+  SetTextColor 255 207 255
+  SetBorderColor 255 207 255
+  PlayEffect White Temp
+  MinimapIcon 2 White Square
+  CustomAlertSound "sound/item_drop/small.mp3" 200
+  Continue
+
+Show
+  BaseType "Waystone"
+  WaystoneTier 15
+  SetFontSize 40
+  SetBackgroundColor 65 20 80
+  PlayEffect White
+  MinimapIcon 1 White Square
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+
+################################################################################
+# - Pinnacle Keys, Tablet
+# ---
+Show
+  Class == "Pinnacle Keys" "Tablet"
+  SetFontSize 40
+  SetTextColor 255 207 255
+  SetBorderColor 255 207 255
+  SetBackgroundColor 65 20 80
+  PlayEffect Purple
+  MinimapIcon 1 Purple Square
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+
+################################################################################
+# - Trials
+# ----------
+Show
+  BaseType "Barya" "Ultimatum"
+  SetFontSize 40
+  SetTextColor 210 105 30 # chocolate
+  SetBorderColor 210 105 30
+  SetBackgroundColor 65 20 80
+  PlayEffect White
+  MinimapIcon 2 Blue Square
+  CustomAlertSound "sound/item_drop/small.mp3" 200
+
+################################################################################
+# K e e p
+# ----------
+Show
+  BaseType == "Amethyst Ring" "Expert Altar Robe" "Expert Barrier Quarterstaff" "Expert Cloaked Mail" "Expert Crumbling Maul" "Expert Elite Greathelm" "Expert Feathered Sandals" "Expert Feathered Targe" "Expert Feathered Tiara" "Expert Forlorn Crossbow" "Expert Goldcast Cuffs" "Expert Heavy Crown" "Expert Hexer's Robe" "Expert Hunting Shoes" "Expert Intricate Gloves" "Expert Iron Cuirass" "Expert Keth Raiment" "Expert Leaden Greathammer" "Expert Lizardscale Boots" "Expert Moulded Mitts" "Expert Oak Greathammer" "Expert Omen Crest Shield" "Expert Pathfinder Coat" "Expert Pelt Leggings" "Expert Pelt Mantle" "Expert Plumed Focus" "Expert Rogue Armour" "Expert Sacrificial Mantle" "Expert Scale Mail" "Expert Scalper's Jacket" "Expert Serpentscale Coat" "Expert Shaman Mantle" "Expert Slicing Quarterstaff" "Expert Spined Bracers" "Expert Spiral Wraps" "Expert Stacked Sabatons" "Expert Steel Plate" "Expert Stone Greaves" "Expert Stone Tower Shield" "Expert Studded Vest" "Expert Tribal Mask" "Expert Vaal Cuirass" "Expert Warpick" "Expert Waxed Jacket" "Expert Wayfarer Jacket" "Expert Zealot Bow" "Plate Belt" "Primed Quiver" "Prismatic Ring" "Siphoning Wand" "Solar Amulet" "Voltaic Staff"
+  Rarity <= Rare
+  SetFontSize 35
+  SetBorderColor 0 128 0 # green
+  SetBackgroundColor 0 0 0 # black
+  PlayEffect Green Temp
+  MinimapIcon 2 Green Kite
+  CustomAlertSound "sound/item_drop/medium.mp3" 200
+
+Show
+  BaseType == "Rattling Sceptre" "Omen Sceptre" "Breach Ring"
+  SetFontSize 40
+  SetTextColor 147 112 219 # medium purple
+  SetBackgroundColor 255 250 250 # White
+  PlayEffect Yellow
+  MinimapIcon 1 Yellow Kite
+  CustomAlertSound "sound/item_drop/large.mp3" 200
