@@ -34,30 +34,6 @@ Show
   Continue
 
 # ------------------------------------------------------------------------------
-# Gold
-Show
-  Class == "Stackable Currency"
-  StackSize > 100
-  BaseType == "Gold"
-  MinimapIcon 2 Yellow Cross
-  Continue
-
-Show
-  Class == "Stackable Currency"
-  BaseType == "Gold"
-  StackSize >= 500
-  SetBackgroundColor 0 0 0 # black
-  PlayEffect Yellow Temp
-  MinimapIcon 1 Yellow Cross
-
-# - Hide Gold < 50
-Hide
-  AreaLevel >= 45
-  Class == "Stackable Currency"
-  BaseType == "Gold"
-  StackSize < 100
-
-# ------------------------------------------------------------------------------
 # - Scroll of Wisdom
 Hide
   AreaLevel >= 45
@@ -248,12 +224,39 @@ Show
 ################################################################################
 # - Regular Currency [price 10/01/2025]
 ################################################################################
+#
+# ----------------------------------------
+# Gold
+# ----------------------------------------
+Show
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  StackSize >= 500
+  SetTextColor 255 255 0 # yellow
+  SetBorderColor 255 255 0 # yellow
+  PlayEffect Yellow Temp
+  MinimapIcon 1 Yellow Cross
+  CustomAlertSound "sound/gold/small.mp3" 200
 
+Show
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  StackSize > 100
+  SetTextColor 220 220 220 # gainsboro
+  SetBorderColor 0 0 0 # black
+  SetBackgroundColor 0 0 0 # black
+  MinimapIcon 2 Yellow Cross
+
+# - Hide Gold < 100
+Hide
+  AreaLevel >= 45
+  Class == "Stackable Currency"
+  BaseType == "Gold"
+  StackSize <= 100
 
 # ----------------------------------------
 # - Overrides font size, bg color,
 #   to all currency for catch unknown item (Tier D style)
-# 
 Show
   Class == "Stackable Currency"
   SetFontSize 35
@@ -789,8 +792,8 @@ Show
   SetFontSize 35
   SetBorderColor 0 128 0 # green
   SetBackgroundColor 0 0 0 # black
-  PlayEffect Green Temp
-  MinimapIcon 2 Green Kite
+  PlayEffect White Temp
+  MinimapIcon 2 Blue Kite
   CustomAlertSound "sound/item_drop/medium.mp3" 200
 
 Show
@@ -798,8 +801,8 @@ Show
   SetFontSize 40
   SetTextColor 147 112 219 # medium purple
   SetBackgroundColor 255 250 250 # White
-  PlayEffect Yellow
-  MinimapIcon 1 Yellow Kite
+  PlayEffect White
+  MinimapIcon 1 Blue Kite
   CustomAlertSound "sound/item_drop/large.mp3" 200
 
 ################################################################################
